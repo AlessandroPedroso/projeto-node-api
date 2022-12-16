@@ -2,6 +2,7 @@ import { request, response } from "express";
 import express from 'express';
 
 const app = express()
+app.use(express.json())
 
 const users = []
 
@@ -11,10 +12,18 @@ app.get('/users', (request,response) =>{
 })
 
 app.post('/users', (request,response) =>{
+    
+    // const name = request.body.name
+    // const age = request.body.age
 
-    console.log(request)
+    const {name,age} = request.body
 
-    return response.json({ok:true})
+    users.push({name,age})
+
+    // console.log(request)
+    // console.log(request.body)
+
+    return response.json({name,age})
 })
 
 
